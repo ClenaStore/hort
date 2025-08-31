@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>🌱 Hort Clena – Hortaliças sem agrotóxicos</title>
-  <meta name="description" content="Hort Clena: produção agroecológica, hortaliças frescas sem agrotóxicos. Vídeos, fotos, cestas e contato." />
+  <meta name="description" content="Hort Clena: produção agroecológica, hortaliças frescas sem agrotóxicos. Vídeos, fotos, contato, FAQ e mais." />
 
   <!-- Favicon + Social preview -->
   <link rel="icon" sizes="32x32" href="https://github.com/ClenaStore/hort/blob/main/paste/ChatGPT%20Image%2031%20de%20ago.%20de%202025,%2000_08_45.png?raw=true">
@@ -41,7 +41,7 @@
     h3{font-size:clamp(1.1rem,1.6vw,1.25rem)}
     section{padding:clamp(28px,4vw,48px) 0}
 
-    /* TOPBAR (direita) */
+    /* TOPBAR (desktop) */
     .topbar{
       position:fixed; top:14px; right:14px; z-index:900;
       display:flex; align-items:center; gap:10px;
@@ -70,25 +70,27 @@
       overflow:hidden;
     }
     .hero::before{
-      /* anel neon animado */
       content:""; position:absolute; inset:-2px; border-radius:32px;
       padding:2px; background:
         conic-gradient(from var(--angle),
           #00ff9d 0%, #b3ffd9 20%, #00ffa7 40%, #8affc4 60%, #00ff9d 80%, #b3ffd9 100%);
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude;
-      animation:spin 8s linear infinite;
-      pointer-events:none;
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor; mask-composite: exclude;
+      animation:spin 8s linear infinite; pointer-events:none;
     }
     @property --angle{syntax:'<angle>';initial-value:0deg;inherits:false}
     @keyframes spin{to{--angle:360deg}}
+
     .hero .row{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
     .hero .badge{display:inline-flex;align-items:center;gap:8px;background:#ffffff22;border:1px solid #ffffff55;padding:6px 10px;border-radius:999px;margin-bottom:10px}
     .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:12px 18px;border-radius:12px;border:1px solid #ffffff55;background:#fff;color:var(--brand);font-weight:700;cursor:pointer}
     .btn.ghost{background:transparent;color:#fff}
     .hero .mark{width:92px;height:92px;border-radius:22px;background:#ffffff22;border:1px solid #ffffff55;padding:10px}
+
+    /* MENU MOBILE DENTRO DO BANNER */
+    .hero-menu{display:none; position:absolute; top:12px; right:12px; z-index:10}
+    .hero-menu .menu-btn{background:#ffffff22;border:1px solid #ffffff55;color:#fff}
 
     /* CARDS & GRIDS */
     .grid{display:grid;gap:clamp(12px,2vw,18px)}
@@ -106,11 +108,6 @@
     .gallery img{width:100%;height:220px;object-fit:cover;border-radius:12px;transition:transform .25s ease;cursor:zoom-in}
     .gallery img:hover{transform:scale(1.04)}
 
-    /* PLANOS */
-    .price{display:grid;gap:14px}
-    .price .value{font-size:1.8rem;color:var(--brand)}
-    .price .cta .btn{width:100%}
-
     /* DEPOIMENTOS */
     .quote{background:#eafff4;border:1px solid var(--line);border-radius:14px;padding:14px}
 
@@ -127,6 +124,13 @@
     .reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease, transform .5s ease}
     .reveal.show{opacity:1;transform:none}
 
+    /* RESPONSIVO: esconde topbar no mobile e usa menu do banner */
+    @media (max-width:760px){
+      .topbar{display:none}
+      .hero{margin-top:18px}
+      .hero-menu{display:block}
+    }
+
     /* Acessibilidade de movimentos */
     @media (prefers-reduced-motion:reduce){
       .hero::before{animation:none}
@@ -136,35 +140,47 @@
 </head>
 <body>
 
-  <!-- TOPBAR DIREITA -->
+  <!-- TOPBAR (DESKTOP) -->
   <div class="topbar" id="topbar">
     <img class="logo" src="https://github.com/ClenaStore/hort/blob/main/paste/ChatGPT%20Image%2031%20de%20ago.%20de%202025,%2000_08_45.png?raw=true" alt="Logo">
     <div class="title" aria-label="Hort Clena">
       <b>Hort Clena</b>
       <small style="opacity:.9;display:block;line-height:1">Agroecologia • Sem agrotóxicos</small>
     </div>
-    <button class="menu-btn" id="menuBtn" aria-expanded="false">☰ Menu</button>
-    <nav class="dropdown" id="menuDrop" aria-label="Navegação">
+    <button class="menu-btn" id="menuBtnDesk" aria-expanded="false">☰ Menu</button>
+    <nav class="dropdown" id="menuDropDesk" aria-label="Navegação">
       <a href="#sobre">Sobre</a>
       <a href="#videos">Vídeos</a>
       <a href="#fotos">Galeria</a>
-      <a href="#planos">Cestas</a>
+      <a href="#depoimentos">Depoimentos</a>
       <a href="#faq">FAQ</a>
       <a href="#contato">Contato</a>
     </nav>
   </div>
 
-  <!-- BANNER HERO -->
+  <!-- BANNER HERO (com menu embutido no mobile) -->
   <section class="hero reveal">
+    <div class="hero-menu">
+      <button class="menu-btn" id="menuBtnMob" aria-expanded="false">☰ Menu</button>
+      <nav class="dropdown" id="menuDropMob" aria-label="Navegação">
+        <a href="#sobre">Sobre</a>
+        <a href="#videos">Vídeos</a>
+        <a href="#fotos">Galeria</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+
     <div class="row wrap">
       <img class="mark" src="https://github.com/ClenaStore/hort/blob/main/paste/ChatGPT%20Image%2031%20de%20ago.%20de%202025,%2000_08_45.png?raw=true" alt="Marca">
       <div>
         <div class="badge">🌿 Produção agroecológica</div>
         <h1>Da horta para sua mesa — fresco, local e sem agrotóxicos</h1>
-        <p>Transparência do plantio à colheita. Entregas semanais com variedade de folhas, raízes e temperos.</p>
+        <p>Transparência do plantio à colheita. Conteúdos, fotos, vídeos e informação de qualidade.</p>
         <div class="cta">
-          <a class="btn" href="#planos">Ver cestas</a>
-          <a class="btn ghost" href="#contato" style="border-color:#fff;color:#fff">Falar no WhatsApp</a>
+          <a class="btn" href="#videos">Ver vídeos</a>
+          <a class="btn ghost" href="#contato" style="border-color:#fff;color:#fff">Contato</a>
         </div>
       </div>
     </div>
@@ -176,7 +192,7 @@
     <section id="sobre" class="grid cols-2">
       <article class="card reveal">
         <h2>Sobre a Hort Clena</h2>
-        <p>Somos uma horta agroecológica focada em solos vivos e biodiversidade. Sem agrotóxicos, com adubação orgânica e controle biológico. Nosso compromisso é levar **saúde, sabor e rastreabilidade** até você.</p>
+        <p>Somos uma horta agroecológica focada em solos vivos e biodiversidade. Sem agrotóxicos, com adubação orgânica e controle biológico. Nosso compromisso é levar <b>saúde, sabor e rastreabilidade</b> até você.</p>
       </article>
       <article class="card reveal">
         <h2>Como trabalhamos</h2>
@@ -196,7 +212,6 @@
         <article class="card reveal">
           <h3>Plantando Alface Orgânica</h3>
           <div class="video">
-            <!-- Vídeo público estável (troque pelo seu ID quando quiser) -->
             <iframe src="https://www.youtube.com/embed/M7lc1UVf-VE" title="Alface orgânica" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
           </div>
         </article>
@@ -231,59 +246,34 @@
       </div>
     </section>
 
-    <!-- PLANOS / CESTAS -->
-    <section id="planos">
-      <h2 class="reveal">Cestas da semana</h2>
-      <div class="grid cols-3">
-        <div class="card price reveal">
-          <h3>Cesta Essencial</h3>
-          <div class="value">R$ 39</div>
-          <p>Folhas + 1 raiz + 1 tempero. Ideal para 1–2 pessoas.</p>
-          <div class="cta"><a class="btn" href="#contato">Quero essa</a></div>
-        </div>
-        <div class="card price reveal" style="border:2px solid var(--brand)">
-          <h3>Cesta Família</h3>
-          <div class="value">R$ 69</div>
-          <p>Variedade de folhas, 2 raízes, 2 temperos. 3–4 pessoas.</p>
-          <div class="cta"><a class="btn" href="#contato">Quero essa</a></div>
-        </div>
-        <div class="card price reveal">
-          <h3>Cesta Chef</h3>
-          <div class="value">R$ 95</div>
-          <p>Seleção premium + itens sazonais. Para apaixonados por cozinha.</p>
-          <div class="cta"><a class="btn" href="#contato">Quero essa</a></div>
-        </div>
-      </div>
-    </section>
-
     <!-- DEPOIMENTOS -->
     <section id="depoimentos" class="grid cols-3">
       <div class="quote reveal">“As verduras chegam fresquinhas toda semana. Atendimento excelente!” — <b>Ana</b></div>
       <div class="quote reveal">“Sabor de verdade. Depois que conheci a Hort Clena, não compro em outro lugar.” — <b>João</b></div>
-      <div class="quote reveal">“A cesta Chef é minha favorita. Variedade top!” — <b>Marina</b></div>
+      <div class="quote reveal">“Qualidade top e informação transparente.” — <b>Marina</b></div>
     </section>
 
     <!-- FAQ -->
     <section id="faq" class="faq">
       <h2 class="reveal">Perguntas frequentes</h2>
       <details class="reveal">
-        <summary>Como funciona a entrega?</summary>
-        <p>Entregamos 1x por semana na sua região. Após o pedido, combinamos o melhor horário por WhatsApp.</p>
+        <summary>Vocês fazem visitas na horta?</summary>
+        <p>Sim! Organizamos grupos pequenos para mostrar nossa rotina e boas práticas.</p>
       </details>
       <details class="reveal">
         <summary>Os produtos são 100% sem agrotóxicos?</summary>
         <p>Sim. Trabalhamos com manejo agroecológico, adubação orgânica e controle biológico.</p>
       </details>
       <details class="reveal">
-        <summary>Posso personalizar a cesta?</summary>
-        <p>Claro! Avise no WhatsApp suas preferências e faremos a substituição quando possível.</p>
+        <summary>Como posso acompanhar novidades?</summary>
+        <p>Siga nosso Instagram e cadastre seu e-mail para receber novidades e agenda de colheitas.</p>
       </details>
     </section>
 
     <!-- CONTATO -->
     <section id="contato" class="card reveal">
       <h2>Contato</h2>
-      <p>Quer saber mais, agendar uma visita ou assinar a cesta? Fale com a gente:</p>
+      <p>Fale com a gente:</p>
       <div class="grid cols-3">
         <a class="btn" style="background:#25D366;color:#fff;border-color:#128C7E" href="https://wa.me/5599999999999" target="_blank" rel="noopener">💬 WhatsApp</a>
         <a class="btn" style="background:#2563eb;color:#fff;border-color:#1d4ed8" href="mailto:contato@sua-horta.com">✉️ E-mail</a>
@@ -300,17 +290,20 @@
   </footer>
 
   <script>
-    /* Menu (mobile/touch) */
-    (function(){
-      const btn = document.getElementById('menuBtn');
-      const drop = document.getElementById('menuDrop');
-      let touched = false;
-      function toggle(){ drop.classList.toggle('open'); btn.setAttribute('aria-expanded', drop.classList.contains('open'))}
+    /* Dropdown helpers */
+    function wireMenu(btnId, dropId){
+      const btn = document.getElementById(btnId);
+      const drop = document.getElementById(dropId);
+      if(!btn || !drop) return;
+      let touched=false;
+      const toggle=()=>{drop.classList.toggle('open'); btn.setAttribute('aria-expanded', drop.classList.contains('open'))}
       btn.addEventListener('touchstart', e=>{touched=true; e.preventDefault(); toggle()},{passive:false});
       btn.addEventListener('click', e=>{ if(touched){touched=false;return} toggle() });
-      document.addEventListener('click', e=>{ if(!e.target.closest('#topbar')) drop.classList.remove('open') });
+      document.addEventListener('click', e=>{ if(!e.target.closest('#'+dropId) && e.target!==btn) drop.classList.remove('open'); });
       document.addEventListener('keydown', e=>{ if(e.key==='Escape') drop.classList.remove('open') });
-    })();
+    }
+    wireMenu('menuBtnDesk','menuDropDesk');   // desktop
+    wireMenu('menuBtnMob','menuDropMob');     // mobile no banner
 
     /* Reveal on scroll */
     const io = new IntersectionObserver((entries)=>{
