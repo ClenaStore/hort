@@ -15,13 +15,15 @@
   <title>🌱 Minha Horta – Natureza, Agro e Sem Agrotóxicos</title>
   <meta name="description" content="Blog da Minha Horta: cultivo agroecológico, hortaliças sem agrotóxicos, vídeos, fotos e dicas práticas.">
 
+  <!-- ===== Google Analytics 4 ===== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-16DCEBC0D2"></script>
+  <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
-    // Configuração básica da sua propriedade
-    gtag('config', 'G-XXXXXXXXXX', {
-      transport_type: 'beacon'      // envio mais confiável
-      // , debug_mode: true         // opcional: ligue se quiser debugar no console
+    gtag('config', 'G-16DCEBC0D2', {
+      transport_type: 'beacon'
+      // , debug_mode: true  // opcional para debugar no console
     });
   </script>
   <!-- ===== /Google Analytics ===== -->
@@ -408,7 +410,7 @@
         lastFocus = document.activeElement;
         const title = btn.dataset.title || 'Detalhes';
         const text  = btn.dataset.text  || '';
-        const vid   = btn.dataset.video || '';
+        aconst vid   = btn.dataset.video || '';
         titleEl.textContent = title;
         textEl.textContent  = text;
         videoEl.src = vid ? `https://www.youtube.com/embed/${vid}` : '';
