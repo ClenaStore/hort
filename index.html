@@ -49,23 +49,23 @@
       color:#fff; padding:8px 12px; border-radius:999px; border:1px solid #ffffff55; box-shadow:0 10px 22px rgba(0,0,0,.18);
     }
     .topbar .logo{
-  height:40px;          /* altura */
-  width:120px;          /* largura maior que altura → retangular */
-  border-radius:6px;    /* pode zerar se não quiser canto arredondado */
-  background:#fff1;
-  padding:2px;
-  object-fit:contain;   /* evita distorção */
-}
+      height:40px;          /* altura */
+      width:120px;          /* largura retangular */
+      border-radius:6px;
+      background:#fff1;
+      padding:2px;
+      object-fit:contain;   /* evita distorção */
+    }
 
-.hero .mark{
-  height:60px;          /* menor que antes, para ficar elegante */
-  width:160px;          /* largura fixa → formato retangular */
-  border-radius:10px;
-  background:#ffffff22;
-  border:1px solid #ffffff55;
-  padding:6px;
-  object-fit:contain;
-}
+    .hero .mark{
+      height:60px;
+      width:160px;          /* retangular */
+      border-radius:10px;
+      background:#ffffff22;
+      border:1px solid #ffffff55;
+      padding:6px;
+      object-fit:contain;
+    }
 
     .topbar b{white-space:nowrap}
     .menu-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;background:#ffffff22;border:1px solid #ffffff55;color:#fff;cursor:pointer}
@@ -104,9 +104,8 @@
     .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:12px 18px;border-radius:12px;border:1px solid #ffffff55;background:#fff;color:var(--brand);font-weight:700;cursor:pointer}
     .btn.ghost{background:transparent;color:#fff}
-  
 
-    /* MENU MOBILE DENTRO DO BANNER */
+    /* MENU MOBILE DENTRO DO BANNER (se quiser ativar depois, basta adicionar o HTML) */
     .hero-menu{display:none; position:absolute; top:12px; right:12px; z-index:10}
     .hero-menu .menu-btn{background:#ffffff22;border:1px solid #ffffff55;color:#fff}
 
@@ -154,6 +153,17 @@
       .hero::before{animation:none}
       .reveal{transition:none}
     }
+
+    /* ===== Botão "Voltar ao topo" ===== */
+    .back-to-top{
+      position:fixed; right:16px; bottom:16px; z-index:950;
+      display:none; align-items:center; gap:8px;
+      background:#16a34a; color:#fff; border:1px solid #128038;
+      border-radius:999px; padding:10px 14px; box-shadow:0 8px 20px rgba(0,0,0,.18);
+      cursor:pointer;
+    }
+    .back-to-top.show{ display:flex; }
+    .back-to-top:focus{ outline:3px solid #86efac; outline-offset:2px; }
   </style>
 </head>
 <body>
@@ -176,20 +186,8 @@
     </nav>
   </div>
 
-  <!-- BANNER HERO (com menu embutido no mobile) -->
+  <!-- BANNER HERO -->
   <section class="hero reveal">
-    <div class="hero-menu">
-      <button class="menu-btn" id="menuBtnMob" aria-expanded="false">☰ Menu</button>
-      <nav class="dropdown" id="menuDropMob" aria-label="Navegação">
-        <a href="#sobre">Sobre</a>
-        <a href="#videos">Vídeos</a>
-        <a href="#fotos">Galeria</a>
-        <a href="#depoimentos">Depoimentos</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contato">Contato</a>
-      </nav>
-    </div>
-
     <div class="row wrap">
       <img class="mark" src="https://github.com/ClenaStore/hort/blob/main/paste/ChatGPT%20Image%2031%20de%20ago.%20de%202025,%2000_08_45.png?raw=true" alt="Marca">
       <div>
@@ -306,7 +304,18 @@
     </div>
   </footer>
 
+  <!-- Botão Voltar ao topo -->
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">▲ Topo</button>
+
   <script>
+    // Sempre iniciar no topo ao carregar/navegar
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.addEventListener('load', () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+    });
+
     /* Dropdown helpers */
     function wireMenu(btnId, dropId){
       const btn = document.getElementById(btnId);
@@ -320,7 +329,7 @@
       document.addEventListener('keydown', e=>{ if(e.key==='Escape') drop.classList.remove('open') });
     }
     wireMenu('menuBtnDesk','menuDropDesk');   // desktop
-    wireMenu('menuBtnMob','menuDropMob');     // mobile no banner
+    // wireMenu('menuBtnMob','menuDropMob'); // use se adicionar o menu mobile dentro do banner
 
     /* Reveal on scroll */
     const io = new IntersectionObserver((entries)=>{
@@ -329,6 +338,17 @@
       })
     },{threshold:.12});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    /* Botão Voltar ao topo */
+    const backBtn = document.getElementById('backToTop');
+    const toggleBackBtn = () => {
+      if (window.scrollY > 280) backBtn.classList.add('show');
+      else backBtn.classList.remove('show');
+    };
+    window.addEventListener('scroll', toggleBackBtn, { passive:true });
+    backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    // Estado inicial
+    toggleBackBtn();
   </script>
 </body>
 </html>
