@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>🌱 Minha Horta – Natureza, Agro e Sem Agrotóxicos</title>
+  <meta name="description" content="Blog da Minha Horta: cultivo agroecológico, hortaliças sem agrotóxicos, vídeos, fotos e dicas práticas."/>
+  <style>
+    :root{
+      --bg:#f0fdf4; --card:#ffffff; --line:#d1fae5; --text:#064e3b; --muted:#0b7a5e; --brand:#16a34a; --brand-2:#0ea5e9;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; background:var(--bg); color:var(--text)}
+    a{color:inherit}
+    img{max-width:100%; display:block}
+    /* header */
+    .topbar{background:linear-gradient(120deg,var(--brand) 0%, #22c55e 50%, #86efac 100%); color:#fff}
+    .wrap{max-width:1100px; margin:0 auto; padding:0 16px}
+    header{display:flex; align-items:center; gap:14px; padding:16px 0; flex-wrap:wrap}
+    header img.logo{height:64px; width:auto}
+    header .title{display:flex; flex-direction:column}
+    header .title h1{margin:0; font-size:1.9rem; line-height:1.2}
+    header .title small{opacity:.9}
+    nav{display:flex; gap:12px; flex-wrap:wrap; padding:0 0 16px 0}
+    nav a{background:#ffffff22; color:#fff; padding:8px 12px; border-radius:999px; text-decoration:none; border:1px solid #ffffff55}
+    nav a:hover{background:#ffffff33}
+    /* sections */
+    section{padding:28px 0}
+    h2{margin:0 0 14px 0; font-size:1.5rem}
+    .grid{display:grid; gap:16px}
+    @media(min-width:720px){ .grid.cols-2{grid-template-columns:1fr 1fr} .grid.cols-3{grid-template-columns:repeat(3,1fr)} }
+    .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; box-shadow:0 2px 8px #00000012}
+    .card h3{margin:6px 0 8px}
+    .badge{display:inline-block; font-size:.75rem; background:#eafff4; border:1px solid var(--line); padding:4px 8px; border-radius:999px; color:var(--muted)}
+    .btn{display:inline-block; padding:10px 14px; border-radius:12px; text-decoration:none; border:1px solid var(--line); background:#fff}
+    .btn.brand{background:var(--brand); color:#fff; border-color:#128038}
+    .btn.ghost{background:#fff}
+    .btn.full{width:100%; text-align:center}
+    /* video embeds */
+    .video{position:relative; padding-top:56.25%; border-radius:10px; overflow:hidden; background:#000}
+    .video iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+    /* gallery */
+    .gallery{display:grid; gap:10px; grid-template-columns:repeat(2,1fr)}
+    @media(min-width:720px){.gallery{grid-template-columns:repeat(4,1fr)}}
+    .gallery img{border-radius:10px; cursor:pointer; aspect-ratio:1/1; object-fit:cover}
+    /* lightbox */
+    .lightbox{position:fixed; inset:0; background:#000a; display:none; align-items:center; justify-content:center; padding:20px; z-index:50}
+    .lightbox img{max-height:90vh; border-radius:12px}
+    /* articles */
+    .post-meta{font-size:.85rem; color:#065f46bb}
+    /* contact block */
+    .cta{display:grid; gap:12px}
+    @media(min-width:720px){.cta{grid-template-columns:1fr 1fr 1fr}}
+    .cta .btn{display:flex; align-items:center; gap:8px; justify-content:center}
+    /* footer + floating WA */
+    footer{background:#064e3b; color:#d1fae5; padding:18px 0; margin-top:20px}
+    .float-wa{
+      position:fixed; right:18px; bottom:18px; background:#25D366; color:#fff; border-radius:999px;
+      padding:12px 16px; text-decoration:none; box-shadow:0 6px 18px #00000033; z-index:60; border:2px solid #128C7E;
+    }
+  </style>
+</head>
+<body>
+  <!-- TOPO -->
+  <div class="topbar">
+    <div class="wrap">
+      <header>
+        <!-- TROQUE 'logo.png' pela sua logo -->
+        <img src="logo.png" alt="Logo da Minha Horta" class="logo">
+        <div class="title">
+          <h1>Minha Horta</h1>
+          <small>Natureza • Agroecologia • Hortaliças sem agrotóxicos 🌿</small>
+        </div>
+      </header>
+      <nav aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#videos">Vídeos</a>
+        <a href="#fotos">Fotos</a>
+        <a href="#artigos">Artigos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <!-- SOBRE -->
+    <section id="sobre">
+      <div class="grid cols-2">
+        <div class="card">
+          <h2>Sobre a Minha Horta</h2>
+          <p>Produzimos hortaliças frescas, sem agrotóxicos, com manejo agroecológico e respeito ao solo. Aqui você encontra vídeos, fotos e artigos com nossas práticas de plantio, manejo, colheita e receitas.</p>
+          <p><span class="badge">Agroecologia</span> <span class="badge">Hortaliças</span> <span class="badge">Sem agrotóxicos</span></p>
+          <a class="btn brand" href="#contato">Quero mais informações</a>
+        </div>
+        <div class="card">
+          <h3>Como trabalhamos</h3>
+          <ul>
+            <li>Adubação orgânica e cobertura do solo</li>
+            <li>Controle biológico e consórcios de plantas</li>
+            <li>Irrigação eficiente e reaproveitamento de água</li>
+            <li>Transparência do plantio à colheita</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VÍDEOS -->
+    <section id="videos">
+      <h2>Vídeos da Horta</h2>
+      <div class="grid cols-3">
+        <article class="card">
+          <h3>Plantio de Alface</h3>
+          <p class="post-meta">Cultivo sem agrotóxicos • 6 min</p>
+          <div class="video">
+            <!-- Substitua VIDEO_ID1 -->
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID1" title="Plantio de Alface" allowfullscreen></iframe>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Tomates Orgânicos 🍅</h3>
+          <p class="post-meta">Manejo e tutoramento • 8 min</p>
+          <div class="video">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID2" title="Tomates Orgânicos" allowfullscreen></iframe>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Dicas de Compostagem</h3>
+          <p class="post-meta">Resíduos virando adubo • 4 min</p>
+          <div class="video">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID3" title="Compostagem" allowfullscreen></iframe>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- GALERIA DE FOTOS -->
+    <section id="fotos">
+      <h2>Galeria de Fotos</h2>
+      <div class="card">
+        <p>Um pouco do nosso dia a dia na horta. Clique para ampliar.</p>
+        <div class="gallery" id="galeria">
+          <!-- Troque os src pelos seus arquivos/imagens -->
+          <img src="fotos/alface.jpg" alt="Canteiro de alface" loading="lazy">
+          <img src="fotos/tomate.jpg" alt="Tomates maduros" loading="lazy">
+          <img src="fotos/couve.jpg" alt="Couve fresca" loading="lazy">
+          <img src="fotos/canteiro.jpg" alt="Canteiro com cobertura morta" loading="lazy">
+          <img src="fotos/irrigacao.jpg" alt="Irrigação eficiente" loading="lazy">
+          <img src="fotos/compostagem.jpg" alt="Compostagem" loading="lazy">
+          <img src="fotos/cebolinha.jpg" alt="Cebolinha" loading="lazy">
+          <img src="fotos/feira.jpg" alt="Cestas prontas para entrega" loading="lazy">
+        </div>
+      </div>
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Ampliação da foto">
+        <img src="" alt="Foto ampliada">
+      </div>
+    </section>
+
+    <!-- ARTIGOS / TEXTOS -->
+    <section id="artigos">
+      <h2>Artigos & Textos</h2>
+      <div class="grid cols-2">
+        <article class="card">
+          <h3>Mulching: por que cobrir o solo?</h3>
+          <p class="post-meta">Leitura de 3–4 min • Agroecologia</p>
+          <p>A cobertura do solo reduz evaporação, protege a microbiota e diminui o surgimento de plantas espontâneas. Explicamos como fazemos com palha e restos de poda.</p>
+          <a class="btn ghost" href="#" target="_blank" rel="noopener">Ler mais</a>
+        </article>
+        <article class="card">
+          <h3>Consórcio de culturas: alface + cebolinha</h3>
+          <p class="post-meta">Leitura de 4–5 min • Manejo</p>
+          <p>Como escolher espécies que se ajudam no canteiro, melhorando rendimento e sanidade, com exemplos práticos da nossa horta.</p>
+          <a class="btn ghost" href="#" target="_blank" rel="noopener">Ler mais</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <h2>Contato & Pedidos</h2>
+      <div class="card">
+        <p>Quer saber mais, agendar visita ou receber cesta semanal? Fale com a gente:</p>
+        <div class="cta">
+          <!-- Substitua pelo seu número em formato internacional: 55DDDNUMERO -->
+          <a class="btn brand" href="https://wa.me/5599999999999?text=Olá!%20Quero%20saber%20mais%20sobre%20as%20hortaliças%20sem%20agrotóxicos." target="_blank" rel="noopener" aria-label="WhatsApp">
+            💬 WhatsApp
+          </a>
+          <a class="btn" href="mailto:contato@sua-horta.com?subject=Informações%20-%20Minha%20Horta&body=Olá!%20Quero%20saber%20mais." aria-label="E-mail">
+            ✉️ E-mail
+          </a>
+          <a class="btn" href="https://instagram.com/seu_perfil" target="_blank" rel="noopener" aria-label="Instagram">
+            📷 Instagram
+          </a>
+        </div>
+      </div>
+
+      <!-- Formulário (opcional; usa mailto) -->
+      <div class="card" style="margin-top:14px">
+        <h3>Envie uma mensagem</h3>
+        <form action="mailto:contato@sua-horta.com" method="post" enctype="text/plain">
+          <div class="grid cols-2">
+            <label>Nome<br><input name="nome" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--line)"></label>
+            <label>WhatsApp<br><input name="whatsapp" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--line)"></label>
+          </div>
+          <label style="display:block; margin-top:10px">Mensagem<br>
+            <textarea name="mensagem" rows="4" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--line)"></textarea>
+          </label>
+          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
+            <button class="btn brand" type="submit">Enviar</button>
+            <a class="btn" href="#sobre">Voltar ao topo</a>
+          </div>
+        </form>
+        <p style="font-size:.85rem; color:#065f46bb; margin-top:8px">Dica: para um formulário com envio profissional (sem abrir o e-mail), dá para integrar com Google Apps Script ou um backend simples — posso te entregar o script quando quiser.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>© 2025 Minha Horta • Produção agroecológica e sem agrotóxicos 🌿</p>
+    </div>
+  </footer>
+
+  <!-- Botão flutuante do WhatsApp -->
+  <a class="float-wa" href="https://wa.me/5599999999999?text=Olá!%20Tenho%20interesse%20nas%20cestas%20da%20horta." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">💬 Falar no WhatsApp</a>
+
+  <script>
+    // Lightbox simples da galeria
+    const lb = document.getElementById('lightbox');
+    const lbImg = lb.querySelector('img');
+    document.getElementById('galeria').addEventListener('click', e=>{
+      if(e.target.tagName==='IMG'){
+        lbImg.src = e.target.src;
+        lb.style.display='flex';
+      }
+    });
+    lb.addEventListener('click', ()=>{ lb.style.display='none'; lbImg.src=''; });
+  </script>
+</body>
+</html>
