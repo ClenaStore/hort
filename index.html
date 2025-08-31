@@ -6,6 +6,20 @@
   <title>🌱 Minha Horta – Natureza, Agro e Sem Agrotóxicos</title>
   <meta name="description" content="Blog da Minha Horta: cultivo agroecológico, hortaliças sem agrotóxicos, vídeos, fotos e dicas práticas.">
 
+  <!-- ===== Google Analytics 4 (substitua G-XXXXXXXXXX pelo seu ID) ===== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    // Configuração básica da sua propriedade
+    gtag('config', 'G-XXXXXXXXXX', {
+      transport_type: 'beacon'      // envio mais confiável
+      // , debug_mode: true         // opcional: ligue se quiser debugar no console
+    });
+  </script>
+  <!-- ===== /Google Analytics ===== -->
+
   <style>
     :root{
       --bg:#f6fff8; --card:#ffffff; --line:#e7f6ea; --text:#083b2d; --muted:#0b7a5e; --brand:#16a34a; --brand-2:#0ea5e9;
@@ -165,7 +179,7 @@
         <div class="card">
           <h2>Sobre a Minha Horta</h2>
           <p>Produzimos hortaliças frescas, sem agrotóxicos, com manejo agroecológico e respeito ao solo. Aqui você encontra vídeos, fotos e textos com nossas práticas de plantio, manejo, colheita e receitas.</p>
-        <p>
+          <p>
             <span class="badge">Agroecologia</span>
             <span class="badge">Hortaliças</span>
             <span class="badge">Sem agrotóxicos</span>
@@ -271,9 +285,9 @@
         <p>Quer saber mais, agendar visita ou receber cesta semanal? Fale com a gente:</p>
         <div class="cta">
           <!-- Substitua pelo seu número no formato 55DDDNUMERO -->
-          <a class="btn brand" href="https://wa.me/5599999999999?text=Olá!%20Quero%20saber%20mais%20sobre%20as%20hortaliças%20sem%20agrotóxicos." target="_blank" rel="noopener" aria-label="WhatsApp">💬 WhatsApp</a>
-          <a class="btn" href="mailto:contato@sua-horta.com?subject=Informações%20-%20Minha%20Horta&body=Olá!%20Quero%20saber%20mais." aria-label="E-mail">✉️ E-mail</a>
-          <a class="btn" href="https://instagram.com/seu_perfil" target="_blank" rel="noopener" aria-label="Instagram">📷 Instagram</a>
+          <a class="btn brand track-wa" href="https://wa.me/5599999999999?text=Olá!%20Quero%20saber%20mais%20sobre%20as%20hortaliças%20sem%20agrotóxicos." target="_blank" rel="noopener" aria-label="WhatsApp">💬 WhatsApp</a>
+          <a class="btn track-email" href="mailto:contato@sua-horta.com?subject=Informações%20-%20Minha%20Horta&body=Olá!%20Quero%20saber%20mais." aria-label="E-mail">✉️ E-mail</a>
+          <a class="btn track-ig" href="https://instagram.com/seu_perfil" target="_blank" rel="noopener" aria-label="Instagram">📷 Instagram</a>
         </div>
       </div>
 
@@ -305,7 +319,7 @@
   </footer>
 
   <!-- Botão flutuante do WhatsApp -->
-  <a class="float-wa" href="https://wa.me/5599999999999?text=Olá!%20Tenho%20interesse%20nas%20cestas%20da%20horta." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">💬 Falar no WhatsApp</a>
+  <a class="float-wa track-wa" href="https://wa.me/5599999999999?text=Olá!%20Tenho%20interesse%20nas%20cestas%20da%20horta." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">💬 Falar no WhatsApp</a>
 
   <!-- ===== MODAL ===== -->
   <div class="modal-backdrop" id="postModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mais informações do artigo">
@@ -342,6 +356,10 @@
       btn.addEventListener('click', ()=>{
         const open = drop.classList.toggle('open');
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        // GA4: clique no menu
+        if (typeof gtag === 'function') {
+          gtag('event', 'menu_click', { location: 'topbar', state: open ? 'open' : 'close' });
+        }
       });
     })();
 
@@ -354,12 +372,20 @@
           lbImg.src = e.target.src;
           lb.style.display='flex';
           lockScroll(true);
+          // GA4: abertura da lightbox
+          if (typeof gtag === 'function') {
+            gtag('event', 'open_lightbox', { image_alt: e.target.alt || '(sem alt)' });
+          }
         }
       });
       lb.addEventListener('click', ()=>{
         lb.style.display='none';
         lbImg.src='';
         lockScroll(false);
+        // GA4: fechamento da lightbox
+        if (typeof gtag === 'function') {
+          gtag('event', 'close_lightbox');
+        }
       });
     })();
 
@@ -385,6 +411,10 @@
         lockScroll(true);
         closeEl.focus();
         document.addEventListener('keydown', escHandler);
+        // GA4: abertura do modal
+        if (typeof gtag === 'function') {
+          gtag('event', 'open_article_modal', { article_title: title, has_video: !!vid });
+        }
       }
 
       function closeModal(){
@@ -394,6 +424,10 @@
         lockScroll(false);
         document.removeEventListener('keydown', escHandler);
         if(lastFocus) lastFocus.focus();
+        // GA4: fechamento do modal
+        if (typeof gtag === 'function') {
+          gtag('event', 'close_article_modal');
+        }
       }
 
       function escHandler(e){ if(e.key === 'Escape') closeModal(); }
@@ -403,6 +437,26 @@
 
       document.querySelectorAll('.open-modal').forEach(btn=>{
         btn.addEventListener('click', ()=>openModal(btn));
+      });
+    })();
+
+    // === Rastreio de cliques em WhatsApp/Email/Instagram ===
+    (function(){
+      const waLinks = document.querySelectorAll('.track-wa');
+      waLinks.forEach(a=>{
+        a.addEventListener('click', ()=> {
+          if (typeof gtag === 'function') {
+            gtag('event', 'contact_click', { method: 'whatsapp', location: a.classList.contains('float-wa') ? 'floating_button' : 'contact_section' });
+          }
+        });
+      });
+      const email = document.querySelector('.track-email');
+      if (email) email.addEventListener('click', ()=> {
+        if (typeof gtag === 'function') gtag('event', 'contact_click', { method: 'email' });
+      });
+      const ig = document.querySelector('.track-ig');
+      if (ig) ig.addEventListener('click', ()=> {
+        if (typeof gtag === 'function') gtag('event', 'contact_click', { method: 'instagram' });
       });
     })();
   </script>
