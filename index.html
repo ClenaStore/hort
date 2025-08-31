@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=100&auto=format&fit=crop&q=60">
   <meta property="og:title" content="🌱 Hort Clena – Natureza, Produtos sem agrotóxicos">
   <meta property="og:description" content="Produção agroecológica • Hortaliças sem agrotóxicos • Dicas práticas e vídeos">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=800&auto=format&fit=crop&q=80">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1524594227085-1f53a1fd0c5c?w=800&auto=format&fit=crop&q=80">
   <meta property="og:type" content="website">
 
   <style>
@@ -36,23 +36,35 @@
     .banner{
       margin-top:90px;
       width:95%; margin-inline:auto;
-      border-radius:28px;
-      padding:40px 24px;
-      background:linear-gradient(120deg,#16a34a,#22c55e,#86efac);
+      border-radius:32px;
+      padding:50px 30px;
+      background:url("https://images.unsplash.com/photo-1498654200943-1088dd4438ae?w=1600&auto=format&fit=crop&q=80") center/cover no-repeat;
       color:#fff;
       display:flex; align-items:center; gap:20px; flex-wrap:wrap;
       position:relative;
-      animation:neon 4s linear infinite;
+      overflow:hidden;
+      box-shadow:0 0 25px rgba(0,255,0,.4);
+      animation:neon 6s linear infinite;
     }
-    .banner img{width:100px;height:100px;object-fit:cover;border-radius:20px}
-    .banner h1{margin:0;font-size:2rem}
-    .banner p{margin:6px 0 0;font-size:1.1rem}
-    .banner a{display:inline-block;margin-top:10px;padding:12px 20px;border-radius:30px;background:#fff;color:#16a34a;text-decoration:none;font-weight:bold;transition:.3s}
+    .banner::before{
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(135deg,rgba(22,163,74,.8),rgba(34,197,94,.6));
+      border-radius:inherit;
+    }
+    .banner-content{position:relative;z-index:2;max-width:700px}
+    .banner h1{margin:0;font-size:2.5rem}
+    .banner p{margin:12px 0;font-size:1.2rem;line-height:1.4}
+    .banner a{
+      display:inline-block;margin-top:14px;
+      padding:12px 24px;border-radius:30px;
+      background:#fff;color:#16a34a;text-decoration:none;font-weight:bold;
+      transition:.3s
+    }
     .banner a:hover{background:#eafff4}
     @keyframes neon {
-      0%{box-shadow:0 0 10px #16a34a,0 0 20px #22c55e}
-      50%{box-shadow:0 0 25px #22c55e,0 0 45px #86efac}
-      100%{box-shadow:0 0 10px #16a34a,0 0 20px #22c55e}
+      0%{box-shadow:0 0 15px #16a34a,0 0 30px #22c55e}
+      50%{box-shadow:0 0 35px #22c55e,0 0 65px #86efac}
+      100%{box-shadow:0 0 15px #16a34a,0 0 30px #22c55e}
     }
 
     /* ===== Layout ===== */
@@ -91,10 +103,9 @@
 
   <!-- ===== BANNER ===== -->
   <section class="banner">
-    <img src="https://images.unsplash.com/photo-1524594227085-1f53a1fd0c5c?w=400&auto=format&fit=crop&q=80" alt="Horta Orgânica">
-    <div>
+    <div class="banner-content">
       <h1>🌱 Hort Clena</h1>
-      <p>Produção agroecológica e sem agrotóxicos • Da horta para sua mesa</p>
+      <p>Produção agroecológica e sem agrotóxicos • Da horta para sua mesa com qualidade, saúde e sabor.</p>
       <a href="#contato">Quero minha cesta semanal</a>
     </div>
   </section>
