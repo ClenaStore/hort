@@ -3,8 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>🌱 Hort clena – Natureza, Produtos sem agrotóxos</title>
-  <meta name="description" content="Blog da Minha Horta: cultivo agroecológico, hortaliças sem agrotóxicos, vídeos, fotos e dicas práticas.">
+  <title>🌱 Hort Clena – Natureza, Produtos sem agrotóxicos</title>
+  <meta name="description" content="Produção agroecológica, hortaliças frescas sem agrotóxicos. Vídeos, fotos e dicas práticas de cultivo.">
+
+  <!-- ===== Favicon & Open Graph ===== -->
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <meta property="og:title" content="🌱 Hort Clena – Produtos sem agrotóxicos">
+  <meta property="og:description" content="Produzimos hortaliças frescas, agroecológicas e sem agrotóxicos. Veja vídeos, fotos e dicas de cultivo.">
+  <meta property="og:image" content="logo-share.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seudominio.github.io/hort">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="logo-share.png">
 
   <!-- ===== Google Analytics 4 ===== -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-16DCEBC0D2"></script>
@@ -14,419 +25,161 @@
     gtag('js', new Date());
     gtag('config', 'G-16DCEBC0D2', { transport_type: 'beacon' });
   </script>
-  <!-- ===== /Google Analytics ===== -->
 
   <style>
     :root{
       --bg:#f3fff6; --card:#ffffff; --line:#e7f6ea; --text:#083b2d; --muted:#0b7a5e; --brand:#16a34a;
       --wrap: min(1280px, 100% - 40px);
       --radius: 16px; --shadow: 0 10px 28px rgba(0,0,0,.08);
-      --sbw: 0px;
     }
-
     *,*::before,*::after{box-sizing:border-box}
-    html{scroll-behavior:smooth; height:100%; scrollbar-gutter: stable both-edges;}
-    body{
-      margin:0; height:100%;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:var(--bg); color:var(--text); line-height:1.5;
-      -ms-overflow-style:none; scrollbar-width:none; overscroll-behavior:none;
-      overflow-x:hidden;
-    }
-    ::-webkit-scrollbar{width:0;height:0}
-
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);line-height:1.5;overflow-x:hidden}
     img{max-width:100%;display:block}
     a{color:inherit;text-decoration:none}
-    h1,h2,h3{line-height:1.2;margin:0 0 .5rem}
-    h1{font-size:clamp(1.4rem,2.5vw,2.2rem)}
-    h2{font-size:clamp(1.15rem,2vw,1.6rem)}
-    h3{font-size:clamp(1.05rem,1.7vw,1.25rem)}
 
     /* ===== Topbar ===== */
-    .topbar{
-      position:fixed; top:14px; right:14px; z-index:1000;
+    header.topbar{
+      position:fixed; top:0; left:0; right:0; z-index:1000;
       background:linear-gradient(120deg,var(--brand) 0%, #22c55e 50%, #86efac 100%);
-      border:1px solid #ffffff66; border-radius:999px; box-shadow:0 10px 24px rgba(0,0,0,.18);
-      display:flex; align-items:center; gap:8px; padding:8px 10px; color:#fff;
-      max-width:calc(100% - 28px);
+      box-shadow:0 4px 12px rgba(0,0,0,.2);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 20px; color:#fff;
     }
-    .topbar .brand{ display:flex; align-items:center; gap:8px; }
-    .topbar .logo{height:28px; width:auto; border-radius:8px; background:#fff1; padding:2px}
-    .topbar .title{display:none}
-    .topbar .menu-btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      border:1px solid #ffffff66; background:#ffffff22; color:#fff;
-      padding:8px 10px; border-radius:999px; cursor:pointer;
-      white-space:nowrap;
-      touch-action: manipulation; /* evita bug duplo toque */
-    }
-    .dropdown{
-      position:absolute; top:calc(100% + 8px); right:0;
-      display:none; min-width:220px;
-      background:#0a3b2c; color:#eafff4;
-      border:1px solid #ffffff33; border-radius:12px;
-      box-shadow:0 14px 30px rgba(0,0,0,.25);
-      z-index:1100;
-      max-height:70vh; overflow:auto;
-    }
-    .dropdown.open{display:block; animation:drop .18s ease;}
-    @keyframes drop{ from{opacity:0; transform:translateY(-6px)} to{opacity:1; transform:translateY(0)} }
-    .dropdown a{ display:block; padding:12px 14px; border-bottom:1px solid #ffffff1e; color:#eafff4; }
-    .dropdown a:last-child{border-bottom:none}
-    .dropdown a:hover{background:#0f4d3b}
-    @media (min-width:760px){
-      .topbar .title{display:flex; flex-direction:column}
-      .topbar .title b{font-size:.95rem; line-height:1}
-      .topbar .title small{font-size:.75rem; opacity:.9; line-height:1}
-    }
-    @media (max-width:760px){
-      .dropdown{ min-width:70vw; }
-    }
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img.logo{height:36px;width:36px;object-fit:contain;border-radius:6px;background:#fff1;padding:2px}
+    .brand .title{display:flex;flex-direction:column}
+    .brand .title b{font-size:1.1rem}
+    .brand .title small{font-size:.75rem;opacity:.9;line-height:1.2}
 
-    .wrap{width:var(--wrap);margin-inline:auto}
-    main{padding-top:84px}
-    section{padding: clamp(18px, 2.6vw, 28px) 0}
-
-    .badge{display:inline-block;font-size:.8rem;background:#eafff4;border:1px solid var(--line);padding:4px 8px;border-radius:999px;color:#0b7a5e;margin-right:6px}
-    .card{
-      background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
-      padding: clamp(12px, 2vw, 18px); box-shadow: var(--shadow);
-      display:flex; flex-direction:column; gap:.5rem; height:100%;
+    .menu-btn{border:none;background:#ffffff22;color:#fff;padding:8px 14px;border-radius:999px;cursor:pointer;font-size:1rem}
+    nav.dropdown{
+      position:absolute;top:100%;right:0;
+      display:none;flex-direction:column;
+      background:#0a3b2c;color:#fff;
+      border-radius:0 0 12px 12px;
+      box-shadow:0 6px 16px rgba(0,0,0,.25);
+      min-width:200px;
     }
+    nav.dropdown.open{display:flex}
+    nav.dropdown a{padding:12px 16px;border-bottom:1px solid #ffffff22;color:#eafff4}
+    nav.dropdown a:hover{background:#0f4d3b}
+    nav.dropdown a:last-child{border-bottom:none}
 
-    .grid{display:grid; gap: clamp(12px,1.8vw,22px); align-items:stretch}
+    main{padding-top:84px;width:var(--wrap);margin-inline:auto}
+    section{padding:24px 0}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+
+    .grid{display:grid;gap:16px}
     .cols-2{grid-template-columns:1fr}
-    @media (min-width:780px){ .cols-2{grid-template-columns:repeat(2,1fr)} }
-    .auto-fit{grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));}
+    @media(min-width:780px){.cols-2{grid-template-columns:repeat(2,1fr)}}
+    .auto-fit{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
 
-    .video{border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9;margin-top:auto}
+    .video{border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9}
     .video iframe{width:100%;height:100%;border:0}
 
-    /* Galeria */
     .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
-    @media (min-width:1100px){ .gallery{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))} }
-    .gallery img{
-      width:100%; aspect-ratio:1/1; object-fit:cover;
-      border-radius:10px; cursor:zoom-in;
-    }
-    .card .note{
-      max-width:70ch; margin:.25rem 0 .75rem;
-      font-size:.92rem; color:#0b7a5e;
-    }
+    @media(min-width:1100px){.gallery{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}
+    .gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;cursor:zoom-in}
 
-    .lightbox{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:20px;z-index:70}
-    .lightbox img{max-width:min(92vw,1300px);max-height:90vh;border-radius:12px}
-
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:10px 14px;border-radius:12px;text-decoration:none;border:1px solid var(--line);background:#fff;cursor:pointer}
-    .btn.brand{background:var(--brand);color:#fff;border-color:#128038}
-    .btn.ghost{background:#fff}
-    .btn.full{width:100%}
-    .cta{display:grid;gap:10px}
-    @media(min-width:680px){.cta{grid-template-columns:repeat(3,1fr)}}
-
-    footer{background:#064e3b;color:#d1fae5;padding:18px 0;margin-top:16px}
-    .page-bottom-space{height:82px}
+    footer{background:#064e3b;color:#d1fae5;text-align:center;padding:20px 0;margin-top:20px}
     .float-wa{position:fixed;right:16px;bottom:16px;background:#25D366;color:#fff;border-radius:999px;padding:12px 16px;text-decoration:none;box-shadow:0 6px 18px #00000033;z-index:75;border:2px solid #128C7E}
-
-    .modal-backdrop{position:fixed; inset:0; background:#0008; display:none; align-items:center; justify-content:center; z-index:100; padding:16px;}
-    .modal-backdrop.open{ display:flex; }
-    .modal{ width:min(900px,100%); background:#fff; color:#083b2d; border-radius:14px; box-shadow:0 10px 30px #0003; border:1px solid #e7f6ea; max-height:90vh; display:flex; flex-direction:column; overflow:hidden; }
-    .modal header{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; background:#f3fff6; border-bottom:1px solid #e7f6ea; }
-    .modal header h3{ margin:0; font-size:1.1rem; }
-    .modal .close{ appearance:none; border:1px solid #cfead6; background:#fff; border-radius:10px; padding:8px 10px; cursor:pointer; }
-    .modal .content{ padding:14px 16px; overflow:auto; }
-    .modal .video{ border-radius:12px; overflow:hidden; background:#000; aspect-ratio:16/9; margin-top:10px; }
-    .modal .video iframe{ width:100%; height:100%; border:0; }
-
-    body.lock{ overflow:hidden; padding-right:var(--sbw); }
   </style>
 </head>
 <body>
 
-  <!-- ===== TOPBAR ===== -->
-  <div class="topbar" id="topbar">
+  <!-- ===== HEADER ===== -->
+  <header class="topbar" id="topbar">
     <div class="brand">
-      <img class="logo" src="logo.png" alt="https://github.com/ClenaStore/hort/blob/main/paste/ChatGPT%20Image%2031%20de%20ago.%20de%202025,%2000_08_45.png?raw=true" width="112" height="28">
+      <img class="logo" src="logo.png" alt="Logo Hort Clena">
       <div class="title">
-        <b>Minha Horta</b>
+        <b>Hort Clena</b>
         <small>Agroecologia • Sem agrotóxicos</small>
       </div>
     </div>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuDrop">☰ Menu</button>
-    <nav id="menuDrop" class="dropdown" aria-label="Menu rápido">
+    <nav id="menuDrop" class="dropdown">
       <a href="#sobre">Sobre</a>
       <a href="#videos">Vídeos</a>
       <a href="#fotos">Fotos</a>
       <a href="#artigos">Artigos</a>
       <a href="#contato">Contato</a>
     </nav>
-  </div>
+  </header>
 
   <!-- ===== CONTEÚDO ===== -->
-  <main class="wrap">
-
-    <!-- SOBRE -->
+  <main>
     <section id="sobre">
       <div class="grid cols-2">
         <div class="card">
-          <h2>Sobre a Minha Horta</h2>
-          <p>Produzimos hortaliças frescas, sem agrotóxicos, com manejo agroecológico e respeito ao solo. Aqui você encontra vídeos, fotos e textos com nossas práticas de plantio, manejo, colheita e receitas.</p>
-          <p>
-            <span class="badge">Agroecologia</span>
-            <span class="badge">Hortaliças</span>
-            <span class="badge">Sem agrotóxicos</span>
-          </p>
-          <a class="btn brand" href="#contato">Quero mais informações</a>
+          <h2>Sobre a Hort Clena</h2>
+          <p>Produzimos hortaliças frescas, sem agrotóxicos, com manejo agroecológico e respeito ao solo. Aqui você encontra vídeos, fotos e textos com nossas práticas de plantio e colheita.</p>
         </div>
         <div class="card">
           <h3>Como trabalhamos</h3>
           <ul>
-            <li>Adubação orgânica e cobertura do solo</li>
-            <li>Controle biológico e consórcios de plantas</li>
-            <li>Irrigação eficiente e reaproveitamento de água</li>
+            <li>Adubação orgânica</li>
+            <li>Controle biológico</li>
+            <li>Irrigação eficiente</li>
             <li>Transparência do plantio à colheita</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- VÍDEOS -->
     <section id="videos">
       <h2>Vídeos da Horta</h2>
       <div class="grid auto-fit">
         <article class="card">
           <h3>Plantio de Alface</h3>
-          <p class="post-meta">Cultivo sem agrotóxicos • 6 min</p>
-          <div class="video">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID1" title="Plantio de Alface" allowfullscreen loading="lazy"></iframe>
-          </div>
+          <div class="video"><iframe src="https://www.youtube.com/embed/VIDEO_ID1"></iframe></div>
         </article>
         <article class="card">
-          <h3>Tomates Orgânicos 🍅</h3>
-          <p class="post-meta">Manejo e tutoramento • 8 min</p>
-          <div class="video">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID2" title="Tomates Orgânicos" allowfullscreen loading="lazy"></iframe>
-          </div>
+          <h3>Tomates Orgânicos</h3>
+          <div class="video"><iframe src="https://www.youtube.com/embed/VIDEO_ID2"></iframe></div>
         </article>
         <article class="card">
           <h3>Dicas de Compostagem</h3>
-          <p class="post-meta">Resíduos virando adubo • 4 min</p>
-          <div class="video">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID3" title="Compostagem" allowfullscreen loading="lazy"></iframe>
-          </div>
+          <div class="video"><iframe src="https://www.youtube.com/embed/VIDEO_ID3"></iframe></div>
         </article>
       </div>
     </section>
 
-    <!-- FOTOS -->
     <section id="fotos">
       <h2>Galeria de Fotos</h2>
       <div class="card">
-        <p class="note">Nosso dia a dia na horta. Toque para ampliar.</p>
-        <div class="gallery" id="galeria">
+        <div class="gallery">
           <img src="fotos/alface.jpg" alt="Canteiro de alface">
           <img src="fotos/tomate.jpg" alt="Tomates maduros">
           <img src="fotos/couve.jpg" alt="Couve fresca">
-          <img src="fotos/canteiro.jpg" alt="Canteiro com cobertura morta">
-          <img src="fotos/irrigacao.jpg" alt="Irrigação eficiente">
-          <img src="fotos/compostagem.jpg" alt="Compostagem">
-          <img src="fotos/cebolinha.jpg" alt="Cebolinha">
           <img src="fotos/feira.jpg" alt="Cestas prontas para entrega">
         </div>
       </div>
-      <div class="lightbox" id="lightbox"><img src="" alt="Foto ampliada"></div>
     </section>
 
-    <!-- ARTIGOS -->
-    <section id="artigos">
-      <h2>Artigos & Textos</h2>
-      <div class="grid cols-2">
-        <article class="card">
-          <h3>Mulching: por que cobrir o solo?</h3>
-          <p class="post-meta">Leitura de 3–4 min • Agroecologia</p>
-          <p>A cobertura do solo reduz evaporação, protege a microbiota e diminui o surgimento de plantas espontâneas.</p>
-          <button class="btn ghost open-modal"
-            data-title="Mulching: por que cobrir o solo?"
-            data-text="Cobrir o solo com palha, folhas ou restos de poda mantém a umidade, reduz variações de temperatura e alimenta a vida do solo. Na nossa horta usamos palhada de capim e restos de poda, reaplicando a cada ciclo. Dica: mantenha 3–5 cm e afaste um pouco do caule."
-            data-video="VIDEO_ID_MULCHING">Ler mais</button>
-        </article>
-        <article class="card">
-          <h3>Consórcio: alface + cebolinha</h3>
-          <p class="post-meta">Leitura de 4–5 min • Manejo</p>
-          <p>Espécies que se ajudam no canteiro, melhorando rendimento e sanidade, com exemplos práticos.</p>
-          <button class="btn ghost open-modal"
-            data-title="Consórcio de culturas: alface + cebolinha"
-            data-text="O consórcio reduz pragas e otimiza o espaço. A cebolinha atua como barreira natural e a alface ocupa rapidamente o solo. Espaçamento: linhas alternadas a cada 25–30 cm. Colha a alface primeiro e mantenha a cebolinha por mais ciclos."
-            data-video="VIDEO_ID_CONSORCIO">Ler mais</button>
-        </article>
-      </div>
-    </section>
-
-    <!-- CONTATO -->
     <section id="contato">
       <h2>Contato & Pedidos</h2>
       <div class="card">
         <p>Quer saber mais, agendar visita ou receber cesta semanal? Fale com a gente:</p>
-        <div class="cta">
-          <a class="btn brand track-wa" href="https://wa.me/5599999999999" target="_blank" rel="noopener">💬 WhatsApp</a>
-          <a class="btn track-email" href="mailto:contato@sua-horta.com" rel="noopener">✉️ E-mail</a>
-          <a class="btn track-ig" href="https://instagram.com/seu_perfil" target="_blank" rel="noopener">📷 Instagram</a>
-        </div>
+        <a class="btn brand" href="https://wa.me/5599999999999" target="_blank">💬 WhatsApp</a>
+        <a class="btn" href="mailto:contato@sua-horta.com">✉️ E-mail</a>
       </div>
     </section>
-
-    <div class="page-bottom-space"></div>
   </main>
 
   <footer>
-    <div class="wrap">
-      <p>© 2025 Minha Horta • Produção agroecológica e sem agrotóxicos 🌿</p>
-    </div>
+    © 2025 Hort Clena • Produção agroecológica e sem agrotóxicos 🌿
   </footer>
 
-  <a class="float-wa track-wa" href="https://wa.me/5599999999999" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">💬 Falar no WhatsApp</a>
-
-  <!-- ===== MODAL ===== -->
-  <div class="modal-backdrop" id="postModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mais informações do artigo">
-    <div class="modal" role="document">
-      <header>
-        <h3 id="modalTitle">Título</h3>
-        <button class="close" id="modalClose" aria-label="Fechar">✕</button>
-      </header>
-      <div class="content">
-        <p id="modalText">Texto...</p>
-        <div class="video">
-          <iframe id="modalVideo" src="" title="Vídeo relacionado" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Botão flutuante WhatsApp -->
+  <a class="float-wa" href="https://wa.me/5599999999999" target="_blank">💬 Falar no WhatsApp</a>
 
   <script>
-    /* ===== Controle de scroll sem “balanço” ===== */
-    function lockScroll(lock) {
-      const sbw = window.innerWidth - document.documentElement.clientWidth;
-      document.documentElement.style.setProperty('--sbw', sbw + 'px');
-      document.body.classList.toggle('lock', !!lock);
-    }
-
-    // === Topbar dropdown (corrigido p/ mobile: touch + click) ===
-    (function(){
-      const btn  = document.getElementById('menuBtn');
-      const drop = document.getElementById('menuDrop');
-
-      let touched = false;
-
-      function openMenu(){
-        drop.classList.add('open');
-        btn.setAttribute('aria-expanded','true');
-        if (typeof gtag === 'function') gtag('event','menu_click',{location:'topbar',state:'open'});
-      }
-      function closeMenu(){
-        drop.classList.remove('open');
-        btn.setAttribute('aria-expanded','false');
-        if (typeof gtag === 'function') gtag('event','menu_click',{location:'topbar',state:'close'});
-      }
-      function toggleMenu(){
-        (drop.classList.contains('open') ? closeMenu : openMenu)();
-      }
-
-      btn.addEventListener('touchstart', (e)=>{
-        touched = true;
-        e.preventDefault();
-        e.stopPropagation();
-        toggleMenu();
-      }, {passive:false});
-
-      btn.addEventListener('click', (e)=>{
-        if (touched){ touched = false; return; }
-        e.stopPropagation();
-        toggleMenu();
-      });
-
-      document.addEventListener('click', (e)=>{
-        if(!e.target.closest('#topbar')) closeMenu();
-      });
-
-      document.addEventListener('keydown', (e)=>{
-        if(e.key === 'Escape') closeMenu();
-      });
-    })();
-
-    // === Lightbox galeria ===
-    (function(){
-      const lb = document.getElementById('lightbox');
-      const lbImg = lb.querySelector('img');
-      const gal = document.getElementById('galeria');
-      gal.addEventListener('click', e=>{
-        if(e.target.tagName==='IMG'){
-          lbImg.src = e.target.src;
-          lb.style.display='flex';
-          lockScroll(true);
-          if (typeof gtag === 'function') gtag('event', 'open_lightbox', { image_alt: e.target.alt || '(sem alt)' });
-        }
-      });
-      lb.addEventListener('click', ()=>{
-        lb.style.display='none';
-        lbImg.src='';
-        lockScroll(false);
-        if (typeof gtag === 'function') gtag('event', 'close_lightbox');
-      });
-    })();
-
-    // === Modal "Ler mais" ===
-    (function(){
-      const backdrop = document.getElementById('postModal');
-      const titleEl = document.getElementById('modalTitle');
-      const textEl  = document.getElementById('modalText');
-      const videoEl = document.getElementById('modalVideo');
-      const closeEl = document.getElementById('modalClose');
-      let lastFocus = null;
-
-      function openModal(btn){
-        lastFocus = document.activeElement;
-        const title = btn.dataset.title || 'Detalhes';
-        const text  = btn.dataset.text  || '';
-        const vid   = btn.dataset.video || '';
-        titleEl.textContent = title;
-        textEl.textContent  = text;
-        videoEl.src = vid ? `https://www.youtube.com/embed/${vid}` : '';
-        backdrop.classList.add('open');
-        backdrop.setAttribute('aria-hidden','false');
-        lockScroll(true);
-        closeEl.focus();
-        document.addEventListener('keydown', escHandler);
-        if (typeof gtag === 'function') gtag('event', 'open_article_modal', { article_title: title, has_video: !!vid });
-      }
-
-      function closeModal(){
-        backdrop.classList.remove('open');
-        backdrop.setAttribute('aria-hidden','true');
-        videoEl.src = '';
-        lockScroll(false);
-        document.removeEventListener('keydown', escHandler);
-        if(lastFocus) lastFocus.focus();
-        if (typeof gtag === 'function') gtag('event', 'close_article_modal');
-      }
-
-      function escHandler(e){ if(e.key === 'Escape') closeModal(); }
-      backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) closeModal(); });
-      closeEl.addEventListener('click', closeModal);
-
-      document.querySelectorAll('.open-modal').forEach(btn=> btn.addEventListener('click', ()=>openModal(btn)));
-    })();
-
-    // === Rastreio de cliques em WhatsApp/Email/Instagram ===
-    (function(){
-      const waLinks = document.querySelectorAll('.track-wa');
-      waLinks.forEach(a=> a.addEventListener('click', ()=> {
-        if (typeof gtag === 'function') gtag('event', 'contact_click', { method: 'whatsapp', location: a.classList.contains('float-wa') ? 'floating_button' : 'contact_section' });
-      }));
-      const email = document.querySelector('.track-email');
-      if (email) email.addEventListener('click', ()=> { if (typeof gtag === 'function') gtag('event', 'contact_click', { method: 'email' }); });
-      const ig = document.querySelector('.track-ig');
-      if (ig) ig.addEventListener('click', ()=> { if (typeof gtag === 'function') gtag('event', 'contact_click', { method: 'instagram' }); });
-    })();
+    const btn = document.getElementById('menuBtn');
+    const drop = document.getElementById('menuDrop');
+    btn.addEventListener('click', ()=> drop.classList.toggle('open'));
+    document.addEventListener('click', (e)=>{
+      if(!e.target.closest('.topbar')) drop.classList.remove('open');
+    });
   </script>
 </body>
 </html>
