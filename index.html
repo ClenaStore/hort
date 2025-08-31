@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-16DCEBC0D2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-16DCEBC0D2');
-</script>
+    <!-- ===== Google Analytics 4 ===== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-16DCEBC0D2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-16DCEBC0D2', { transport_type: 'beacon' });
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>🌱 Minha Horta – Natureza, Agro e Sem Agrotóxicos</title>
   <meta name="description" content="Blog da Minha Horta: cultivo agroecológico, hortaliças sem agrotóxicos, vídeos, fotos e dicas práticas.">
+
+ 
   <style>
     :root{
       --bg:#f3fff6; --card:#ffffff; --line:#e7f6ea; --text:#083b2d; --muted:#0b7a5e; --brand:#16a34a;
-      --wrap: min(1280px, 100% - 40px); /* mais largo no desktop, margem lateral maior */
+      --wrap: min(1280px, 100% - 40px);
       --radius: 16px; --shadow: 0 10px 28px rgba(0,0,0,.08);
-      --sbw: 0px; /* largura da barra (definida via JS) */
+      --sbw: 0px;
     }
 
-    /* Reset */
     *,*::before,*::after{box-sizing:border-box}
     html{scroll-behavior:smooth; height:100%; scrollbar-gutter: stable both-edges;}
     body{
@@ -32,7 +32,7 @@
       -ms-overflow-style:none; scrollbar-width:none; overscroll-behavior:none;
       overflow-x:hidden;
     }
-    ::-webkit-scrollbar{width:0;height:0} /* esconde a barra */
+    ::-webkit-scrollbar{width:0;height:0}
 
     img{max-width:100%;display:block}
     a{color:inherit;text-decoration:none}
@@ -41,9 +41,9 @@
     h2{font-size:clamp(1.15rem,2vw,1.6rem)}
     h3{font-size:clamp(1.05rem,1.7vw,1.25rem)}
 
-    /* ===== Topbar (canto direito) ===== */
+    /* ===== Topbar ===== */
     .topbar{
-      position:fixed; top:14px; right:14px; z-index:80;
+      position:fixed; top:14px; right:14px; z-index:1000;
       background:linear-gradient(120deg,var(--brand) 0%, #22c55e 50%, #86efac 100%);
       border:1px solid #ffffff66; border-radius:999px; box-shadow:0 10px 24px rgba(0,0,0,.18);
       display:flex; align-items:center; gap:8px; padding:8px 10px; color:#fff;
@@ -59,11 +59,15 @@
       white-space:nowrap;
     }
     .dropdown{
-      position:absolute; top:100%; right:0; margin-top:8px; display:none; min-width:220px;
-      background:#0a3b2c; color:#eafff4; border:1px solid #ffffff33; border-radius:12px; box-shadow:0 14px 30px rgba(0,0,0,.25);
-      overflow:hidden;
+      position:absolute; top:calc(100% + 8px); right:0;
+      display:none; min-width:220px;
+      background:#0a3b2c; color:#eafff4;
+      border:1px solid #ffffff33; border-radius:12px;
+      box-shadow:0 14px 30px rgba(0,0,0,.25);
+      z-index:1100;
     }
-    .dropdown.open{display:block}
+    .dropdown.open{display:block; animation:drop .18s ease;}
+    @keyframes drop{ from{opacity:0; transform:translateY(-6px)} to{opacity:1; transform:translateY(0)} }
     .dropdown a{ display:block; padding:12px 14px; border-bottom:1px solid #ffffff1e; color:#eafff4; }
     .dropdown a:last-child{border-bottom:none}
     .dropdown a:hover{background:#0f4d3b}
@@ -72,40 +76,44 @@
       .topbar .title b{font-size:.95rem; line-height:1}
       .topbar .title small{font-size:.75rem; opacity:.9; line-height:1}
     }
+    @media (max-width:760px){
+      .dropdown{ min-width:70vw; }
+    }
 
-    /* Container e seções */
     .wrap{width:var(--wrap);margin-inline:auto}
-    main{padding-top:84px} /* espaço pro topbar */
+    main{padding-top:84px}
     section{padding: clamp(18px, 2.6vw, 28px) 0}
 
-    /* Badges e cards */
-    .badge{display:inline-block;font-size:.8rem;background:#eafff4;border:1px solid var(--line);padding:4px 8px;border-radius:999px;color:var(--muted);margin-right:6px}
+    .badge{display:inline-block;font-size:.8rem;background:#eafff4;border:1px solid var(--line);padding:4px 8px;border-radius:999px;color:#0b7a5e;margin-right:6px}
     .card{
       background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
       padding: clamp(12px, 2vw, 18px); box-shadow: var(--shadow);
       display:flex; flex-direction:column; gap:.5rem; height:100%;
     }
 
-    /* Grids responsivos sem buraco */
     .grid{display:grid; gap: clamp(12px,1.8vw,22px); align-items:stretch}
     .cols-2{grid-template-columns:1fr}
     @media (min-width:780px){ .cols-2{grid-template-columns:repeat(2,1fr)} }
     .auto-fit{grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));}
 
-    /* Vídeos */
     .video{border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9;margin-top:auto}
     .video iframe{width:100%;height:100%;border:0}
 
     /* Galeria */
-    .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+    .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
     @media (min-width:1100px){ .gallery{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))} }
-    .gallery img{border-radius:10px;cursor:zoom-in;aspect-ratio:1/1;object-fit:cover}
+    .gallery img{
+      width:100%; aspect-ratio:1/1; object-fit:cover;
+      border-radius:10px; cursor:zoom-in;
+    }
+    .card .note{
+      max-width:70ch; margin:.25rem 0 .75rem;
+      font-size:.92rem; color:#0b7a5e;
+    }
 
-    /* Lightbox */
     .lightbox{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:20px;z-index:70}
     .lightbox img{max-width:min(92vw,1300px);max-height:90vh;border-radius:12px}
 
-    /* CTA */
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:10px 14px;border-radius:12px;text-decoration:none;border:1px solid var(--line);background:#fff;cursor:pointer}
     .btn.brand{background:var(--brand);color:#fff;border-color:#128038}
     .btn.ghost{background:#fff}
@@ -113,12 +121,10 @@
     .cta{display:grid;gap:10px}
     @media(min-width:680px){.cta{grid-template-columns:repeat(3,1fr)}}
 
-    /* Rodapé + respiro pro botão WA */
     footer{background:#064e3b;color:#d1fae5;padding:18px 0;margin-top:16px}
-    .page-bottom-space{height:82px} /* evita o botão flutuante cobrir conteúdo */
+    .page-bottom-space{height:82px}
     .float-wa{position:fixed;right:16px;bottom:16px;background:#25D366;color:#fff;border-radius:999px;padding:12px 16px;text-decoration:none;box-shadow:0 6px 18px #00000033;z-index:75;border:2px solid #128C7E}
 
-    /* Modal */
     .modal-backdrop{position:fixed; inset:0; background:#0008; display:none; align-items:center; justify-content:center; z-index:100; padding:16px;}
     .modal-backdrop.open{ display:flex; }
     .modal{ width:min(900px,100%); background:#fff; color:#083b2d; border-radius:14px; box-shadow:0 10px 30px #0003; border:1px solid #e7f6ea; max-height:90vh; display:flex; flex-direction:column; overflow:hidden; }
@@ -129,7 +135,6 @@
     .modal .video{ border-radius:12px; overflow:hidden; background:#000; aspect-ratio:16/9; margin-top:10px; }
     .modal .video iframe{ width:100%; height:100%; border:0; }
 
-    /* Quando bloquear o scroll (modal/lightbox), não “salta” o layout */
     body.lock{ overflow:hidden; padding-right:var(--sbw); }
   </style>
 </head>
@@ -138,7 +143,7 @@
   <!-- ===== TOPBAR ===== -->
   <div class="topbar" id="topbar">
     <div class="brand">
-      <img class="logo" src="logo.png" alt="Logo da Minha Horta" width="112" height="28" loading="eager" fetchpriority="high">
+      <img class="logo" src="logo.png" alt="Logo da Minha Horta" width="112" height="28">
       <div class="title">
         <b>Minha Horta</b>
         <small>Agroecologia • Sem agrotóxicos</small>
@@ -190,21 +195,21 @@
           <h3>Plantio de Alface</h3>
           <p class="post-meta">Cultivo sem agrotóxicos • 6 min</p>
           <div class="video">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID1" title="Plantio de Alface" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID1" title="Plantio de Alface" allowfullscreen loading="lazy"></iframe>
           </div>
         </article>
         <article class="card">
           <h3>Tomates Orgânicos 🍅</h3>
           <p class="post-meta">Manejo e tutoramento • 8 min</p>
           <div class="video">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID2" title="Tomates Orgânicos" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID2" title="Tomates Orgânicos" allowfullscreen loading="lazy"></iframe>
           </div>
         </article>
         <article class="card">
           <h3>Dicas de Compostagem</h3>
           <p class="post-meta">Resíduos virando adubo • 4 min</p>
           <div class="video">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID3" title="Compostagem" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID3" title="Compostagem" allowfullscreen loading="lazy"></iframe>
           </div>
         </article>
       </div>
@@ -214,25 +219,22 @@
     <section id="fotos">
       <h2>Galeria de Fotos</h2>
       <div class="card">
-        <p>Nosso dia a dia na horta. Toque para ampliar.</p>
+        <p class="note">Nosso dia a dia na horta. Toque para ampliar.</p>
         <div class="gallery" id="galeria">
-          <img src="fotos/alface.jpg" alt="Canteiro de alface" loading="lazy">
-          <img src="fotos/tomate.jpg" alt="Tomates maduros" loading="lazy">
-          <img src="fotos/couve.jpg" alt="Couve fresca" loading="lazy">
-          <img src="fotos/canteiro.jpg" alt="Canteiro com cobertura morta" loading="lazy">
-          <img src="fotos/irrigacao.jpg" alt="Irrigação eficiente" loading="lazy">
-          <img src="fotos/compostagem.jpg" alt="Compostagem" loading="lazy">
-          <img src="fotos/cebolinha.jpg" alt="Cebolinha" loading="lazy">
-          <img src="fotos/feira.jpg" alt="Cestas prontas para entrega" loading="lazy">
+          <img src="fotos/alface.jpg" alt="Canteiro de alface">
+          <img src="fotos/tomate.jpg" alt="Tomates maduros">
+          <img src="fotos/couve.jpg" alt="Couve fresca">
+          <img src="fotos/canteiro.jpg" alt="Canteiro com cobertura morta">
+          <img src="fotos/irrigacao.jpg" alt="Irrigação eficiente">
+          <img src="fotos/compostagem.jpg" alt="Compostagem">
+          <img src="fotos/cebolinha.jpg" alt="Cebolinha">
+          <img src="fotos/feira.jpg" alt="Cestas prontas para entrega">
         </div>
       </div>
-      <!-- Lightbox -->
-      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Ampliação da foto">
-        <img src="" alt="Foto ampliada">
-      </div>
+      <div class="lightbox" id="lightbox"><img src="" alt="Foto ampliada"></div>
     </section>
 
-    <!-- ARTIGOS + MODAL -->
+    <!-- ARTIGOS -->
     <section id="artigos">
       <h2>Artigos & Textos</h2>
       <div class="grid cols-2">
@@ -243,11 +245,8 @@
           <button class="btn ghost open-modal"
             data-title="Mulching: por que cobrir o solo?"
             data-text="Cobrir o solo com palha, folhas ou restos de poda mantém a umidade, reduz variações de temperatura e alimenta a vida do solo. Na nossa horta usamos palhada de capim e restos de poda, reaplicando a cada ciclo. Dica: mantenha 3–5 cm e afaste um pouco do caule."
-            data-video="VIDEO_ID_MULCHING">
-            Ler mais
-          </button>
+            data-video="VIDEO_ID_MULCHING">Ler mais</button>
         </article>
-
         <article class="card">
           <h3>Consórcio: alface + cebolinha</h3>
           <p class="post-meta">Leitura de 4–5 min • Manejo</p>
@@ -255,9 +254,7 @@
           <button class="btn ghost open-modal"
             data-title="Consórcio de culturas: alface + cebolinha"
             data-text="O consórcio reduz pragas e otimiza o espaço. A cebolinha atua como barreira natural e a alface ocupa rapidamente o solo. Espaçamento: linhas alternadas a cada 25–30 cm. Colha a alface primeiro e mantenha a cebolinha por mais ciclos."
-            data-video="VIDEO_ID_CONSORCIO">
-            Ler mais
-          </button>
+            data-video="VIDEO_ID_CONSORCIO">Ler mais</button>
         </article>
       </div>
     </section>
@@ -268,9 +265,9 @@
       <div class="card">
         <p>Quer saber mais, agendar visita ou receber cesta semanal? Fale com a gente:</p>
         <div class="cta">
-          <a class="btn brand track-wa" href="https://wa.me/5599999999999?text=Olá!%20Quero%20saber%20mais%20sobre%20as%20hortaliças%20sem%20agrotóxicos." target="_blank" rel="noopener" aria-label="WhatsApp">💬 WhatsApp</a>
-          <a class="btn track-email" href="mailto:contato@sua-horta.com?subject=Informações%20-%20Minha%20Horta&body=Olá!%20Quero%20saber%20mais." aria-label="E-mail">✉️ E-mail</a>
-          <a class="btn track-ig" href="https://instagram.com/seu_perfil" target="_blank" rel="noopener" aria-label="Instagram">📷 Instagram</a>
+          <a class="btn brand track-wa" href="https://wa.me/5577998253249" target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a class="btn track-email" href="storeclena@gmail.com" rel="noopener">✉️ E-mail</a>
+        
         </div>
       </div>
     </section>
@@ -284,8 +281,7 @@
     </div>
   </footer>
 
-  <!-- Botão flutuante do WhatsApp -->
-  <a class="float-wa track-wa" href="https://wa.me/5599999999999?text=Olá!%20Tenho%20interesse%20nas%20cestas%20da%20horta." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">💬 Falar no WhatsApp</a>
+  <a class="float-wa track-wa" href="https://wa.me/5599999999999" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">💬 Falar no WhatsApp</a>
 
   <!-- ===== MODAL ===== -->
   <div class="modal-backdrop" id="postModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mais informações do artigo">
@@ -297,7 +293,7 @@
       <div class="content">
         <p id="modalText">Texto...</p>
         <div class="video">
-          <iframe id="modalVideo" src="" title="Vídeo relacionado" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <iframe id="modalVideo" src="" title="Vídeo relacionado" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -311,22 +307,30 @@
       document.body.classList.toggle('lock', !!lock);
     }
 
-    // Topbar dropdown
+    // === Topbar dropdown (clique + toque) ===
     (function(){
-      const btn = document.getElementById('menuBtn');
+      const btn  = document.getElementById('menuBtn');
       const drop = document.getElementById('menuDrop');
-      document.addEventListener('click', (e)=>{
-        const inside = e.target.closest('#topbar');
-        if(!inside){ drop.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
-      });
-      btn.addEventListener('click', ()=>{
+
+      function toggleMenu(e){
+        if(e) e.stopPropagation();
         const open = drop.classList.toggle('open');
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        if (typeof gtag === 'function') gtag('event', 'menu_click', { location: 'topbar', state: open ? 'open' : 'close' });
-      });
+        if (typeof gtag === 'function') gtag('event','menu_click',{location:'topbar',state:open?'open':'close'});
+      }
+
+      btn.addEventListener('click', toggleMenu, {passive:true});
+      btn.addEventListener('touchstart', toggleMenu, {passive:true});
+
+      document.addEventListener('click', (e)=>{
+        if(!e.target.closest('#topbar')){
+          drop.classList.remove('open');
+          btn.setAttribute('aria-expanded','false');
+        }
+      }, {passive:true});
     })();
 
-    // Lightbox galeria
+    // === Lightbox galeria ===
     (function(){
       const lb = document.getElementById('lightbox');
       const lbImg = lb.querySelector('img');
@@ -347,7 +351,7 @@
       });
     })();
 
-    // Modal "Ler mais"
+    // === Modal "Ler mais" ===
     (function(){
       const backdrop = document.getElementById('postModal');
       const titleEl = document.getElementById('modalTitle');
@@ -385,10 +389,11 @@
       function escHandler(e){ if(e.key === 'Escape') closeModal(); }
       backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) closeModal(); });
       closeEl.addEventListener('click', closeModal);
+
       document.querySelectorAll('.open-modal').forEach(btn=> btn.addEventListener('click', ()=>openModal(btn)));
     })();
 
-    // Rastreio de cliques em WhatsApp/Email/Instagram
+    // === Rastreio de cliques em WhatsApp/Email/Instagram ===
     (function(){
       const waLinks = document.querySelectorAll('.track-wa');
       waLinks.forEach(a=> a.addEventListener('click', ()=> {
