@@ -4,150 +4,103 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>🌱 Hort Clena – Natureza, Produtos sem agrotóxicos</title>
-  <meta name="description" content="Produção agroecológica, hortaliças frescas sem agrotóxicos. Vídeos, fotos e dicas práticas de cultivo.">
+  <meta name="description" content="Hort Clena: cultivo agroecológico, hortaliças sem agrotóxicos, vídeos, fotos e dicas práticas.">
 
-  <!-- ===== Favicon & Open Graph ===== -->
-  <link rel="icon" href="https://github.com/ClenaStore/hort/blob/main/paste/ChatGPT%20Image%2031%20de%20ago.%20de%202025,%2000_08_45.png?raw=true" type="image/png">
-  <link rel="apple-touch-icon" href="https://github.com/ClenaStore/hort/blob/main/paste/ChatGPT%20Image%2031%20de%20ago.%20de%202025,%2000_08_45.png?raw=true">
-  <meta property="og:title" content="🌱 Hort Clena – Produtos sem agrotóxicos">
-  <meta property="og:description" content="Produzimos hortaliças frescas, agroecológicas e sem agrotóxicos. Veja vídeos, fotos e dicas de cultivo.">
+  <!-- ===== Favicon + Meta para redes sociais ===== -->
+  <link rel="icon" type="image/png" href="https://github.com/ClenaStore/hort/blob/main/paste/ChatGPT%20Image%2031%20de%20ago.%20de%202025,%2000_08_45.png?raw=true">
+  <meta property="og:title" content="🌱 Hort Clena – Natureza, Produtos sem agrotóxicos">
+  <meta property="og:description" content="Produção agroecológica • Hortaliças sem agrotóxicos • Dicas práticas e vídeos">
   <meta property="og:image" content="https://github.com/ClenaStore/hort/blob/main/paste/ChatGPT%20Image%2031%20de%20ago.%20de%202025,%2000_08_45.png?raw=true">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://seudominio.github.io/hort">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="logo-share.png">
-
-  <!-- ===== Google Analytics 4 ===== -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-16DCEBC0D2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-16DCEBC0D2', { transport_type: 'beacon' });
-  </script>
+  <meta property="og:url" content="https://clenastore.github.io/hort/">
 
   <style>
     :root{
-      --bg:#f3fff6; --card:#ffffff; --line:#e7f6ea; --text:#083b2d; --muted:#0b7a5e; --brand:#16a34a;
-      --wrap: min(1280px, 100% - 40px);
-      --radius: 16px; --shadow: 0 10px 28px rgba(0,0,0,.08);
+      --brand:#16a34a; --bg:#f3fff6; --text:#083b2d; --card:#fff; --line:#e7f6ea;
+      --radius:16px; --shadow:0 10px 28px rgba(0,0,0,.08);
     }
-    *,*::before,*::after{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);line-height:1.5;overflow-x:hidden}
-    img{max-width:100%;display:block}
-    a{color:inherit;text-decoration:none}
+
+    body{margin:0;font-family:system-ui,Arial;background:var(--bg);color:var(--text)}
 
     /* ===== Topbar ===== */
-    header.topbar{
-      position:fixed; top:0; left:0; right:0; z-index:1000;
+    .topbar{
+      position:fixed; top:14px; right:14px; z-index:1000;
       background:linear-gradient(120deg,var(--brand) 0%, #22c55e 50%, #86efac 100%);
-      box-shadow:0 4px 12px rgba(0,0,0,.2);
-      display:flex; align-items:center; justify-content:space-between;
-      padding:12px 20px; color:#fff;
+      border-radius:999px; box-shadow:0 10px 24px rgba(0,0,0,.18);
+      display:flex; align-items:center; gap:10px; padding:8px 14px; color:#fff;
     }
-    .brand{display:flex;align-items:center;gap:10px}
-    .brand img.logo{height:36px;width:36px;object-fit:contain;border-radius:6px;background:#fff1;padding:2px}
-    .brand .title{display:flex;flex-direction:column}
-    .brand .title b{font-size:1.1rem}
-    .brand .title small{font-size:.75rem;opacity:.9;line-height:1.2}
-
-    .menu-btn{border:none;background:#ffffff22;color:#fff;padding:8px 14px;border-radius:999px;cursor:pointer;font-size:1rem}
-    nav.dropdown{
-      position:absolute;top:100%;right:0;
-      display:none;flex-direction:column;
-      background:#0a3b2c;color:#fff;
-      border-radius:0 0 12px 12px;
-      box-shadow:0 6px 16px rgba(0,0,0,.25);
-      min-width:200px;
+    .topbar .brand{ display:flex; align-items:center; gap:8px; }
+    .topbar .logo{
+      width:40px; height:40px;
+      object-fit:contain;
+      border-radius:6px;
+      background:#fff;
+      padding:2px;
     }
-    nav.dropdown.open{display:flex}
-    nav.dropdown a{padding:12px 16px;border-bottom:1px solid #ffffff22;color:#eafff4}
-    nav.dropdown a:hover{background:#0f4d3b}
-    nav.dropdown a:last-child{border-bottom:none}
-
-    main{padding-top:100px;width:var(--wrap);margin-inline:auto}
-    section{padding:24px 0}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
-
-    .grid{display:grid;gap:16px}
-    .cols-2{grid-template-columns:1fr}
-    @media(min-width:780px){.cols-2{grid-template-columns:repeat(2,1fr)}}
-    .auto-fit{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-
-    .video{border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9}
-    .video iframe{width:100%;height:100%;border:0}
-
-    .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
-    @media(min-width:1100px){.gallery{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}
-    .gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;cursor:zoom-in}
-
-    footer{background:#064e3b;color:#d1fae5;text-align:center;padding:20px 0;margin-top:20px}
-    .float-wa{position:fixed;right:16px;bottom:16px;background:#25D366;color:#fff;border-radius:999px;padding:12px 16px;text-decoration:none;box-shadow:0 6px 18px #00000033;z-index:75;border:2px solid #128C7E}
+    .topbar .title{display:flex; flex-direction:column}
+    .topbar .title b{font-size:.95rem; line-height:1}
+    .topbar .title small{font-size:.75rem; opacity:.9; line-height:1}
 
     /* ===== Banner Principal ===== */
-    .hero {
-      position: relative;
-      margin: 20px auto 40px;
-      width: 95%;
-      max-width: 1280px;
-      border-radius: 28px;
-      background: linear-gradient(135deg, #0d2e1c, #124d2d);
-      color: #eafff4;
-      text-align: center;
-      padding: 70px 20px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(22, 163, 74, 0.5);
+    .banner{
+      margin-top:80px;
+      width:95%;
+      margin-inline:auto;
+      border-radius:24px;
+      padding:40px;
+      background:linear-gradient(120deg,#16a34a,#22c55e,#86efac);
+      color:#fff;
+      display:flex; align-items:center; gap:20px;
+      position:relative;
+      overflow:hidden;
+      animation:neon 4s linear infinite;
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: -4px;
-      border-radius: inherit;
-      padding: 4px;
-      background: linear-gradient(120deg, rgba(22,163,74,1), rgba(134,239,172,1), rgba(22,163,74,1));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      animation: neonPulse 6s linear infinite;
+    .banner img{
+      width:100px; height:100px;
+      object-fit:contain;
+      border-radius:12px;
+      background:#fff;
+      padding:6px;
+      flex-shrink:0;
     }
-    @keyframes neonPulse {
-      0%   { filter: hue-rotate(0deg) brightness(1); }
-      50%  { filter: hue-rotate(30deg) brightness(1.4); }
-      100% { filter: hue-rotate(0deg) brightness(1); }
+    .banner h1{margin:0;font-size:2rem}
+    .banner p{margin:6px 0 0;font-size:1.1rem}
+
+    @keyframes neon {
+      0%{box-shadow:0 0 10px #16a34a, 0 0 20px #22c55e, 0 0 30px #16a34a;}
+      50%{box-shadow:0 0 25px #22c55e, 0 0 40px #86efac, 0 0 60px #22c55e;}
+      100%{box-shadow:0 0 10px #16a34a, 0 0 20px #22c55e, 0 0 30px #16a34a;}
     }
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      margin: 0 0 12px;
-      color: #bbf7d0;
-      text-shadow: 0 0 8px rgba(34,197,94,.8);
+
+    /* ===== Layout Geral ===== */
+    .wrap{width:min(1280px,95%);margin-inline:auto;padding-top:20px}
+    section{padding:40px 0}
+    h2{margin-bottom:20px}
+
+    .card{
+      background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+      padding:20px; box-shadow:var(--shadow);
     }
-    .hero p {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      max-width: 70ch;
-      margin: 0 auto 20px;
-      color: #d1fae5;
-    }
-    .hero .btn {
-      background: #16a34a;
-      color: #fff;
-      border: none;
-      padding: 12px 22px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 1rem;
-      box-shadow: 0 0 12px rgba(22,163,74,0.7);
-      transition: transform .2s, box-shadow .2s;
-    }
-    .hero .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(34,197,94,0.9);
-    }
+
+    /* Vídeos */
+    .grid{display:grid;gap:20px}
+    .auto-fit{grid-template-columns: repeat(auto-fill,minmax(320px,1fr))}
+    .video{border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9;margin-top:10px}
+    .video iframe{width:100%;height:100%;border:0}
+
+    /* Galeria */
+    .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+    .gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px;cursor:zoom-in}
+    .lightbox{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:200}
+    .lightbox img{max-width:92vw;max-height:92vh;border-radius:12px}
+
+    footer{background:#064e3b;color:#d1fae5;padding:18px 0;text-align:center;margin-top:40px}
   </style>
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
-  <header class="topbar" id="topbar">
+  <!-- ===== TOPBAR ===== -->
+  <div class="topbar">
     <div class="brand">
       <img class="logo" src="https://github.com/ClenaStore/hort/blob/main/paste/ChatGPT%20Image%2031%20de%20ago.%20de%202025,%2000_08_45.png?raw=true" alt="Logo Hort Clena">
       <div class="title">
@@ -155,101 +108,84 @@
         <small>Agroecologia • Sem agrotóxicos</small>
       </div>
     </div>
-    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuDrop">☰ Menu</button>
-    <nav id="menuDrop" class="dropdown">
-      <a href="#sobre">Sobre</a>
-      <a href="#videos">Vídeos</a>
-      <a href="#fotos">Fotos</a>
-      <a href="#artigos">Artigos</a>
-      <a href="#contato">Contato</a>
-    </nav>
-  </header>
+  </div>
 
-  <!-- ===== BANNER PRINCIPAL ===== -->
-  <section class="hero">
-    <h1>🌱 Bem-vindo à Hort Clena</h1>
-    <p>Hortaliças frescas, cultivadas com amor e sem agrotóxicos. 
-       Agroecologia do campo direto para sua mesa.</p>
-    <button class="btn" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">
-      Quero saber mais
-    </button>
+  <!-- ===== BANNER ===== -->
+  <section class="banner">
+    <img src="https://github.com/ClenaStore/hort/blob/main/paste/ChatGPT%20Image%2031%20de%20ago.%20de%202025,%2000_08_45.png?raw=true" alt="Logo Hort Clena">
+    <div>
+      <h1>🌱 Hort Clena</h1>
+      <p>Produção agroecológica e sem agrotóxicos • Da horta para sua mesa</p>
+    </div>
   </section>
 
   <!-- ===== CONTEÚDO ===== -->
-  <main>
-    <section id="sobre">
-      <div class="grid cols-2">
-        <div class="card">
-          <h2>Sobre a Hort Clena</h2>
-          <p>Produzimos hortaliças frescas, sem agrotóxicos, com manejo agroecológico e respeito ao solo. Aqui você encontra vídeos, fotos e textos com nossas práticas de plantio e colheita.</p>
-        </div>
-        <div class="card">
-          <h3>Como trabalhamos</h3>
-          <ul>
-            <li>Adubação orgânica</li>
-            <li>Controle biológico</li>
-            <li>Irrigação eficiente</li>
-            <li>Transparência do plantio à colheita</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+  <main class="wrap">
 
+    <!-- VÍDEOS -->
     <section id="videos">
       <h2>Vídeos da Horta</h2>
       <div class="grid auto-fit">
         <article class="card">
           <h3>Plantio de Alface</h3>
-          <div class="video"><iframe src="https://www.youtube.com/embed/VIDEO_ID1"></iframe></div>
+          <p>Cultivo sem agrotóxicos • 6 min</p>
+          <div class="video"><iframe src="https://www.youtube.com/embed/VIDEO_ID1" title="Plantio de Alface" allowfullscreen></iframe></div>
         </article>
         <article class="card">
-          <h3>Tomates Orgânicos</h3>
-          <div class="video"><iframe src="https://www.youtube.com/embed/VIDEO_ID2"></iframe></div>
+          <h3>Tomates Orgânicos 🍅</h3>
+          <p>Manejo e tutoramento • 8 min</p>
+          <div class="video"><iframe src="https://www.youtube.com/embed/VIDEO_ID2" title="Tomates Orgânicos" allowfullscreen></iframe></div>
         </article>
         <article class="card">
           <h3>Dicas de Compostagem</h3>
-          <div class="video"><iframe src="https://www.youtube.com/embed/VIDEO_ID3"></iframe></div>
+          <p>Resíduos virando adubo • 4 min</p>
+          <div class="video"><iframe src="https://www.youtube.com/embed/VIDEO_ID3" title="Compostagem" allowfullscreen></iframe></div>
         </article>
       </div>
     </section>
 
+    <!-- FOTOS -->
     <section id="fotos">
       <h2>Galeria de Fotos</h2>
       <div class="card">
-        <div class="gallery">
+        <div class="gallery" id="galeria">
           <img src="fotos/alface.jpg" alt="Canteiro de alface">
           <img src="fotos/tomate.jpg" alt="Tomates maduros">
           <img src="fotos/couve.jpg" alt="Couve fresca">
-          <img src="fotos/feira.jpg" alt="Cestas prontas para entrega">
+          <img src="fotos/irrigacao.jpg" alt="Irrigação eficiente">
         </div>
       </div>
+      <div class="lightbox" id="lightbox"><img src="" alt="Foto ampliada"></div>
     </section>
 
+    <!-- CONTATO -->
     <section id="contato">
       <h2>Contato & Pedidos</h2>
       <div class="card">
-        <p>Quer saber mais, agendar visita ou receber cesta semanal? Fale com a gente:</p>
-        <a class="btn brand" href="https://wa.me/5599999999999" target="_blank">💬 WhatsApp</a>
-        <a class="btn" href="mailto:contato@sua-horta.com">✉️ E-mail</a>
-        <a class="btn" href="https://instagram.com/seu_perfil" target="_blank">📷 Instagram</a>
+        <p>Fale com a gente:</p>
+        <p><a href="https://wa.me/5599999999999">💬 WhatsApp</a></p>
+        <p><a href="mailto:contato@sua-horta.com">✉️ E-mail</a></p>
       </div>
     </section>
   </main>
 
+  <!-- ===== RODAPÉ ===== -->
   <footer>
-    © 2025 Hort Clena • Produção agroecológica e sem agrotóxicos 🌿
+    <p>© 2025 Hort Clena • Produção agroecológica 🌿</p>
   </footer>
 
-  <!-- Botão flutuante WhatsApp -->
-  <a class="float-wa" href="https://wa.me/5599999999999" target="_blank">💬 Falar no WhatsApp</a>
-
   <script>
-    const btn = document.getElementById('menuBtn');
-    const drop = document.getElementById('menuDrop');
-    btn.addEventListener('click', ()=> drop.classList.toggle('open'));
-    document.addEventListener('click', (e)=>{
-      if(!e.target.closest('.topbar')) drop.classList.remove('open');
+    // Lightbox da galeria
+    const gal = document.getElementById('galeria');
+    const lb = document.getElementById('lightbox');
+    const lbImg = lb.querySelector('img');
+    gal.addEventListener('click', e=>{
+      if(e.target.tagName==='IMG'){
+        lbImg.src = e.target.src;
+        lb.style.display='flex';
+      }
     });
+    lb.addEventListener('click', ()=> lb.style.display='none');
   </script>
 </body>
 </html>
