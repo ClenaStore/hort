@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <!-- ===== Google Analytics 4 ===== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>🌱 Minha Horta – Natureza, Agro e Sem Agrotóxicos</title>
+  <meta name="description" content="Blog da Minha Horta: cultivo agroecológico, hortaliças sem agrotóxicos, vídeos, fotos e dicas práticas.">
+
+  <!-- ===== Google Analytics 4 ===== -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-16DCEBC0D2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -9,12 +14,8 @@
     gtag('js', new Date());
     gtag('config', 'G-16DCEBC0D2', { transport_type: 'beacon' });
   </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>🌱 Minha Horta – Natureza, Agro e Sem Agrotóxicos</title>
-  <meta name="description" content="Blog da Minha Horta: cultivo agroecológico, hortaliças sem agrotóxicos, vídeos, fotos e dicas práticas.">
+  <!-- ===== /Google Analytics ===== -->
 
- 
   <style>
     :root{
       --bg:#f3fff6; --card:#ffffff; --line:#e7f6ea; --text:#083b2d; --muted:#0b7a5e; --brand:#16a34a;
@@ -57,6 +58,7 @@
       border:1px solid #ffffff66; background:#ffffff22; color:#fff;
       padding:8px 10px; border-radius:999px; cursor:pointer;
       white-space:nowrap;
+      touch-action: manipulation; /* evita bug duplo toque */
     }
     .dropdown{
       position:absolute; top:calc(100% + 8px); right:0;
@@ -65,6 +67,7 @@
       border:1px solid #ffffff33; border-radius:12px;
       box-shadow:0 14px 30px rgba(0,0,0,.25);
       z-index:1100;
+      max-height:70vh; overflow:auto;
     }
     .dropdown.open{display:block; animation:drop .18s ease;}
     @keyframes drop{ from{opacity:0; transform:translateY(-6px)} to{opacity:1; transform:translateY(0)} }
@@ -265,9 +268,9 @@
       <div class="card">
         <p>Quer saber mais, agendar visita ou receber cesta semanal? Fale com a gente:</p>
         <div class="cta">
-          <a class="btn brand track-wa" href="https://wa.me/5577998253249" target="_blank" rel="noopener">💬 WhatsApp</a>
-          <a class="btn track-email" href="storeclena@gmail.com" rel="noopener">✉️ E-mail</a>
-        
+          <a class="btn brand track-wa" href="https://wa.me/5599999999999" target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a class="btn track-email" href="mailto:contato@sua-horta.com" rel="noopener">✉️ E-mail</a>
+          <a class="btn track-ig" href="https://instagram.com/seu_perfil" target="_blank" rel="noopener">📷 Instagram</a>
         </div>
       </div>
     </section>
@@ -307,27 +310,47 @@
       document.body.classList.toggle('lock', !!lock);
     }
 
-    // === Topbar dropdown (clique + toque) ===
+    // === Topbar dropdown (corrigido p/ mobile: touch + click) ===
     (function(){
       const btn  = document.getElementById('menuBtn');
       const drop = document.getElementById('menuDrop');
 
-      function toggleMenu(e){
-        if(e) e.stopPropagation();
-        const open = drop.classList.toggle('open');
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        if (typeof gtag === 'function') gtag('event','menu_click',{location:'topbar',state:open?'open':'close'});
+      let touched = false;
+
+      function openMenu(){
+        drop.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+        if (typeof gtag === 'function') gtag('event','menu_click',{location:'topbar',state:'open'});
+      }
+      function closeMenu(){
+        drop.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+        if (typeof gtag === 'function') gtag('event','menu_click',{location:'topbar',state:'close'});
+      }
+      function toggleMenu(){
+        (drop.classList.contains('open') ? closeMenu : openMenu)();
       }
 
-      btn.addEventListener('click', toggleMenu, {passive:true});
-      btn.addEventListener('touchstart', toggleMenu, {passive:true});
+      btn.addEventListener('touchstart', (e)=>{
+        touched = true;
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu();
+      }, {passive:false});
+
+      btn.addEventListener('click', (e)=>{
+        if (touched){ touched = false; return; }
+        e.stopPropagation();
+        toggleMenu();
+      });
 
       document.addEventListener('click', (e)=>{
-        if(!e.target.closest('#topbar')){
-          drop.classList.remove('open');
-          btn.setAttribute('aria-expanded','false');
-        }
-      }, {passive:true});
+        if(!e.target.closest('#topbar')) closeMenu();
+      });
+
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape') closeMenu();
+      });
     })();
 
     // === Lightbox galeria ===
